@@ -1,0 +1,26 @@
+slug: grievance
+name_en: Register a grievance
+name_hi: शिकायत दर्ज करें
+description: >-
+  Register a complaint or grievance about DMFT works or services in Uttar Bastar Kanker and receive a ticket number.
+# The chat opens the grievance form when any of these keywords appear in a message.
+# Keep them specific to "I want to file a complaint" so informational questions still go to the documents.
+action: grievance_form
+keywords:
+  - complaint
+  - complain
+  - register grievance
+  - file grievance
+  - lodge grievance
+  - submit grievance
+  - raise grievance
+  - shikayat darj
+  - shikayat karni
+  - shikayat karna
+  - शिकायत दर्ज
+  - शिकायत करनी
+  - शिकायत करना
+  - शिकायत करें
+  - शिकायत है
+visibility: public
+instructions: ""

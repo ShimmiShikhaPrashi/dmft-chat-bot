@@ -1,0 +1,168 @@
+slug: dmft-pmkkky
+name_en: DMFT & PMKKKY guidelines
+name_hi: DMFT एवं PMKKKY दिशानिर्देश
+description: >-
+  District Mineral Foundation (DMF / DMFT) under Section 9B of the MMDR Act 1957 and the Pradhan Mantri Khanij
+  Kshetra Kalyan Yojana (PMKKKY) revised guidelines 2024: directly and indirectly affected areas and people,
+  high priority and other priority sectors, utilisation of funds, administrative expenses, endowment fund,
+  composition of the Governing Council and Managing Committee, five-year perspective plan, annual plan,
+  transparency, audit, annual report, grievance redressal and scheduled areas.
+keywords:
+  - dmf
+  - dmft
+  - pmkkky
+  - mineral foundation
+  - mining affected
+  - khanij
+  - khanan
+  - खनिज
+  - खनन
+  - खनिज संस्थान
+  - न्यास
+  - प्रधानमंत्री खनिज क्षेत्र कल्याण योजना
+  - governing council
+  - perspective plan
+visibility: public
+instructions: >-
+  When quoting percentages, limits or distances, state them exactly as written in the 2024 guidelines.
+  Mention that State DMF rules may add details when the guidelines say "as specified by the State Government".
+documents:
+  - path: seed/documents/PMKKKY_Revised_Guidelines_2024.pdf
+    title: PMKKKY Revised Guidelines 2024 (Ministry of Mines)
+    description: >-
+      Revised Pradhan Mantri Khanij Kshetra Kalyan Yojana guidelines issued by the Central Government
+      (order dated 15.01.2024) under Section 9B(3) of the MMDR Act 1957.
+      Copy from https://dmg.goa.gov.in/PDFs/Notifications/DMF/PMKKKY%20revised%20guidelines-2024-DMF.pdf
+  - path: seed/documents/PIB_Latest_Guidelines_of_PMKKKY_2024.pdf
+    title: PIB release - Latest Guidelines of PMKKKY (05 Feb 2024)
+    description: >-
+      Press Information Bureau release by the Ministry of Mines summarising the PMKKKY guidelines 2024.
+      Source https://www.pib.gov.in/PressReleasePage.aspx?PRID=2002708
+qa:
+  - question_en: What is DMFT?
+    question_hi: DMFT क्या है?
+    answer_en: >-
+      The District Mineral Foundation (DMF), also called the District Mineral Foundation Trust (DMFT), is
+      established under Section 9B of the Mines and Minerals (Development and Regulation) Act, 1957 in districts
+      affected by mining operations. Its object is to work for the interest and benefit of persons and areas
+      affected by mining-related operations. DMFs are funded by statutory contributions from mining lease holders,
+      and they implement the Pradhan Mantri Khanij Kshetra Kalyan Yojana (PMKKKY).
+    answer_hi: >-
+      ज़िला खनिज संस्थान (DMF), जिसे ज़िला खनिज संस्थान न्यास (DMFT) भी कहा जाता है, खान एवं खनिज (विकास एवं विनियमन)
+      अधिनियम, 1957 (MMDR Act) की धारा 9B के अंतर्गत खनन प्रभावित ज़िलों में स्थापित किया जाता है। इसका उद्देश्य खनन
+      संबंधी कार्यों से प्रभावित व्यक्तियों और क्षेत्रों के हित और लाभ के लिए काम करना है। DMF को खनन पट्टाधारकों के वैधानिक
+      अंशदान से राशि मिलती है, और यह प्रधानमंत्री खनिज क्षेत्र कल्याण योजना (PMKKKY) को लागू करता है।
+  - question_en: What is PMKKKY and what are its objectives?
+    question_hi: PMKKKY क्या है और इसके उद्देश्य क्या हैं?
+    answer_en: |-
+      The Pradhan Mantri Khanij Kshetra Kalyan Yojana (PMKKKY) was framed by the Central Government in September 2015 and is implemented by District Mineral Foundations using DMF funds. The guidelines were revised by order dated 15.01.2024. Its objectives are:
+      1. to implement developmental and welfare projects/programmes in mining affected areas, complementing existing State and Central schemes;
+      2. to minimise/mitigate the adverse impacts of mining, during and after mining, on the environment, health and socio-economics of people in mining districts;
+      3. to ensure long-term sustainable livelihoods for the affected people in mining areas.
+    answer_hi: |-
+      प्रधानमंत्री खनिज क्षेत्र कल्याण योजना (PMKKKY) केंद्र सरकार ने सितंबर 2015 में बनाई थी और इसे ज़िला खनिज संस्थान DMF की राशि से लागू करते हैं। इसके दिशानिर्देश 15.01.2024 के आदेश से संशोधित किए गए। इसके उद्देश्य हैं:
+      1. खनन प्रभावित क्षेत्रों में विकास एवं कल्याण की परियोजनाएँ/कार्यक्रम लागू करना, जो राज्य और केंद्र की मौजूदा योजनाओं के पूरक हों;
+      2. खनन के दौरान और बाद में पर्यावरण, स्वास्थ्य और लोगों की सामाजिक-आर्थिक स्थिति पर पड़ने वाले दुष्प्रभावों को कम करना;
+      3. खनन क्षेत्रों के प्रभावित लोगों के लिए दीर्घकालिक और स्थायी आजीविका सुनिश्चित करना।
+  - question_en: What are the high priority sectors under PMKKKY 2024?
+    question_hi: PMKKKY 2024 में उच्च प्राथमिकता वाले क्षेत्र कौन से हैं?
+    answer_en: |-
+      At least **70%** of PMKKKY funds must be used in the high priority sectors:
+      - Drinking water supply
+      - Environment preservation and pollution control measures
+      - Health care
+      - Education
+      - Welfare of women and children
+      - Welfare of aged and differently abled
+      - Skill development and livelihood generation
+      - Sanitation
+      - Housing
+      - Agriculture
+      - Animal husbandry
+    answer_hi: |-
+      PMKKKY की कम से कम **70%** राशि उच्च प्राथमिकता वाले क्षेत्रों में खर्च करनी होती है:
+      - पेयजल आपूर्ति
+      - पर्यावरण संरक्षण एवं प्रदूषण नियंत्रण
+      - स्वास्थ्य सेवा
+      - शिक्षा
+      - महिला एवं बाल कल्याण
+      - वृद्ध एवं दिव्यांगजन कल्याण
+      - कौशल विकास एवं आजीविका सृजन
+      - स्वच्छता
+      - आवास
+      - कृषि
+      - पशुपालन
+  - question_en: What are the other priority sectors under PMKKKY and how much can be spent on them?
+    question_hi: PMKKKY में अन्य प्राथमिकता वाले क्षेत्र कौन से हैं और उन पर कितनी राशि खर्च हो सकती है?
+    answer_en: |-
+      Up to **30%** of PMKKKY funds may be used in the other priority sectors:
+      - Physical infrastructure: roads, bridges, railways and waterways projects
+      - Irrigation: alternate sources of irrigation including check dams and diversion weirs, micro/drip irrigation, bore wells and pump energisation
+      - Energy and watershed development: alternate energy (including micro-hydel and decentralised solar), rainwater harvesting, orchards, integrated farming, agroforestry and restoration of catchments
+      - Any other measures for enhancing environmental quality in the mining affected district
+    answer_hi: |-
+      PMKKKY की अधिकतम **30%** राशि अन्य प्राथमिकता वाले क्षेत्रों में खर्च की जा सकती है:
+      - भौतिक अधोसंरचना: सड़क, पुल, रेलवे और जलमार्ग परियोजनाएँ
+      - सिंचाई: चेक डैम और डायवर्सन वियर सहित सिंचाई के वैकल्पिक स्रोत, सूक्ष्म/ड्रिप सिंचाई, बोरवेल और पंप ऊर्जीकरण
+      - ऊर्जा एवं वाटरशेड विकास: वैकल्पिक ऊर्जा (माइक्रो-हाइडल और विकेन्द्रीकृत सौर सहित), वर्षा जल संचयन, बागवानी, एकीकृत खेती, कृषि-वानिकी और जलग्रहण क्षेत्रों का पुनर्स्थापन
+      - खनन प्रभावित ज़िले में पर्यावरण की गुणवत्ता बढ़ाने के अन्य उपाय
+  - question_en: How much of DMF funds can be used for administrative expenses?
+    question_hi: DMF की कितनी राशि प्रशासनिक खर्च के लिए उपयोग की जा सकती है?
+    answer_en: >-
+      An amount not exceeding **5% of the annual receipts** of the Foundation may be used for administrative,
+      supervisory and overhead costs. A DMF with annual collection above Rs. 50 crore must set up a Project Management
+      Unit (PMU), whose cost may be met from administrative expenses. As far as possible no temporary or permanent posts
+      should be created; creating posts or buying vehicles needs prior approval of the State Government, and minimum
+      required staff can be engaged on contract.
+    answer_hi: >-
+      संस्थान की **वार्षिक प्राप्तियों के अधिकतम 5%** तक की राशि प्रशासनिक, पर्यवेक्षण और ओवरहेड खर्चों के लिए उपयोग की जा
+      सकती है। जिस DMF का वार्षिक संग्रह 50 करोड़ रुपये से अधिक है, उसे परियोजना प्रबंधन इकाई (PMU) बनानी होगी, जिसका खर्च
+      प्रशासनिक व्यय से किया जा सकता है। यथासंभव कोई अस्थायी या स्थायी पद नहीं बनाया जाना चाहिए; पद बनाने या वाहन खरीदने के लिए
+      राज्य सरकार की पूर्व स्वीकृति आवश्यक है, और न्यूनतम आवश्यक कर्मचारी संविदा पर रखे जा सकते हैं।
+  - question_en: What are directly and indirectly affected areas under PMKKKY 2024?
+    question_hi: PMKKKY 2024 में प्रत्यक्ष और अप्रत्यक्ष रूप से प्रभावित क्षेत्र क्या हैं?
+    answer_en: |-
+      - **Directly affected areas**: villages and gram panchayats or urban local bodies where mines (other than minor minerals) are situated and operational, villages where families displaced by mines have been resettled, and villages that depend significantly on the mining areas. The radius is specified by the State Government but shall not extend beyond **15 km** from the boundary of the mines.
+      - **Indirectly affected areas**: areas beyond the directly affected area where the local population is adversely affected by economic, social and environmental consequences of mining, within a radius specified by the State Government but not more than **25 km** from the boundary of the mines.
+      - A minimum of **70% of DMF funds** shall be spent only in the directly affected area.
+    answer_hi: |-
+      - **प्रत्यक्ष रूप से प्रभावित क्षेत्र**: वे गाँव, ग्राम पंचायतें या नगरीय निकाय जहाँ खदानें (गौण खनिजों के अलावा) स्थित और चालू हैं, वे गाँव जहाँ खनन से विस्थापित परिवारों का पुनर्वास हुआ है, और वे गाँव जो आजीविका के लिए खनन क्षेत्रों पर काफ़ी निर्भर हैं। इसकी त्रिज्या राज्य सरकार तय करती है, लेकिन यह खदानों की सीमा से **15 किमी** से अधिक नहीं होगी।
+      - **अप्रत्यक्ष रूप से प्रभावित क्षेत्र**: प्रत्यक्ष प्रभावित क्षेत्र के बाहर के वे क्षेत्र जहाँ खनन के आर्थिक, सामाजिक और पर्यावरणीय परिणामों से स्थानीय आबादी प्रभावित होती है; इसकी त्रिज्या राज्य सरकार तय करती है, लेकिन यह खदानों की सीमा से **25 किमी** से अधिक नहीं होगी।
+      - DMF की कम से कम **70% राशि** केवल प्रत्यक्ष रूप से प्रभावित क्षेत्र में खर्च की जाएगी।
+  - question_en: Who is the chairman of the DMF and who are the members of its Governing Council?
+    question_hi: DMF का अध्यक्ष कौन होता है और इसकी शासी परिषद में कौन सदस्य होते हैं?
+    answer_en: |-
+      - The **District Magistrate / Deputy Commissioner / Collector** is the Chairman of both the Governing Council and the Managing Committee; no other person can be chairman.
+      - The **Governing Council** includes the Lok Sabha MP(s) whose constituency has mining affected areas in the district, a Rajya Sabha MP for the one district selected by him/her, the MLAs whose constituencies include mining affected areas, and MLCs for the one district they select. It meets at least **twice a year**.
+      - The **Managing Committee** has the Collector as Chairman and senior district officers responsible for executing projects; it has no elected representatives or nominated non-official members, and meets at least **once every quarter**.
+    answer_hi: |-
+      - **ज़िला दंडाधिकारी / उपायुक्त / कलेक्टर** शासी परिषद और प्रबंध समिति दोनों के अध्यक्ष होते हैं; कोई अन्य व्यक्ति अध्यक्ष नहीं हो सकता।
+      - **शासी परिषद** में वे लोकसभा सांसद होते हैं जिनके निर्वाचन क्षेत्र में ज़िले के खनन प्रभावित क्षेत्र आते हैं, राज्यसभा सांसद (उनके द्वारा चुने गए एक ज़िले में), वे विधायक जिनके निर्वाचन क्षेत्र में खनन प्रभावित क्षेत्र हैं, और विधान परिषद सदस्य (उनके द्वारा चुने गए एक ज़िले में)। इसकी बैठक वर्ष में कम से कम **दो बार** होती है।
+      - **प्रबंध समिति** में कलेक्टर अध्यक्ष और परियोजनाओं के क्रियान्वयन के लिए ज़िम्मेदार ज़िले के वरिष्ठ अधिकारी सदस्य होते हैं; इसमें कोई निर्वाचित प्रतिनिधि या मनोनीत गैर-सरकारी सदस्य नहीं होता। इसकी बैठक हर **तिमाही में कम से कम एक बार** होती है।
+  - question_en: What is the endowment fund under PMKKKY?
+    question_hi: PMKKKY में एंडोमेंट फंड (स्थायी निधि) क्या है?
+    answer_en: >-
+      A reasonable sum **not exceeding 10% of the annual receipts** should be kept as an endowment fund for providing
+      sustainable livelihood. Districts with an annual collection of **Rs. 10 crore or more** must maintain it. It may be
+      invested in government securities/bonds and FDs of scheduled banks, and is used for creating and sustaining
+      livelihoods in areas where mining activity has stopped for any reason, including exhaustion of the mineral.
+    answer_hi: >-
+      स्थायी आजीविका के लिए **वार्षिक प्राप्तियों के अधिकतम 10%** तक की उचित राशि एंडोमेंट फंड (स्थायी निधि) के रूप में रखी
+      जानी चाहिए। जिन ज़िलों का वार्षिक संग्रह **10 करोड़ रुपये या अधिक** है, उन्हें यह निधि रखनी होगी। इसे सरकारी प्रतिभूतियों/बॉन्ड
+      और अनुसूचित बैंकों की सावधि जमा में निवेश किया जा सकता है। इसका उपयोग उन क्षेत्रों में आजीविका बनाने और बनाए रखने के लिए
+      होता है जहाँ किसी भी कारण से, खनिज समाप्त होने सहित, खनन बंद हो गया है।
+  - question_en: What is the five-year perspective plan of DMF?
+    question_hi: DMF की पंचवर्षीय परिप्रेक्ष्य योजना क्या है?
+    answer_en: >-
+      Each district conducts a baseline survey (through academic institutions or renowned agencies, with help from
+      Gram Sabhas/local bodies) and, based on the gaps found, the DMF prepares a five-year Perspective Plan with separate
+      sections for priority sectors such as drinking water, health, education and welfare of women and children, and for
+      other sectors such as roads and irrigation. The plan is split into year-wise action plans, is approved by the
+      Governing Council and displayed on the DMF website. Annual plans are based on it, and may include urgent works not in
+      the perspective plan up to a maximum of 10% of the annual plan.
+    answer_hi: >-
+      हर ज़िला बेसलाइन सर्वेक्षण (शैक्षणिक संस्थानों या प्रतिष्ठित एजेंसियों के माध्यम से, ग्राम सभा/स्थानीय निकायों की सहायता से)
+      कराता है, और पाई गई कमियों के आधार पर DMF पंचवर्षीय परिप्रेक्ष्य योजना बनाता है, जिसमें पेयजल, स्वास्थ्य, शिक्षा, महिला एवं
+      बाल कल्याण जैसे प्राथमिकता क्षेत्रों और सड़क, सिंचाई जैसे अन्य क्षेत्रों के अलग-अलग खंड होते हैं। यह योजना वर्षवार कार्ययोजनाओं
+      में बाँटी जाती है, शासी परिषद द्वारा स्वीकृत होती है और DMF की वेबसाइट पर प्रदर्शित की जाती है। वार्षिक योजनाएँ इसी पर आधारित
+      होती हैं, और इनमें परिप्रेक्ष्य योजना से बाहर के तात्कालिक कार्य वार्षिक योजना के अधिकतम 10% तक शामिल किए जा सकते हैं।

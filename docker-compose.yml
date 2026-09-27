@@ -1,0 +1,16 @@
+services:
+  dmft-sahayak:
+    build: .
+    image: dmft-sahayak:latest
+    env_file: .env
+    environment:
+      STORAGE_DIR: /app/storage
+      HF_HUB_OFFLINE: "1"
+    ports:
+      - "8000:8000"
+    volumes:
+      - dmft-storage:/app/storage
+    restart: unless-stopped
+
+volumes:
+  dmft-storage:

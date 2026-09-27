@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DMFT Sahayak Admin</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231b5e20'/%3E%3Cpath d='M9 22l7-12 7 12z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+
+<div id="appView" class="layout">
+  <aside class="sidebar">
+    <div class="side-brand">
+      <div class="brand-mark sm"><svg viewBox="0 0 32 32"><path d="M8 23l8-14 8 14z" fill="currentColor"/></svg></div>
+      <div><strong>DMFT Sahayak</strong><span>Admin</span></div>
+    </div>
+    <nav id="nav">
+      <a href="#dashboard" data-view="dashboard">Dashboard</a>
+      <a href="#skills" data-view="skills">Skills</a>
+      <a href="#documents" data-view="documents">Documents</a>
+      <a href="#sources" data-view="sources">URL sources</a>
+      <a href="#qa" data-view="qa">Curated Q&amp;A</a>
+      <a href="#review" data-view="review">Review queue <span class="badge badge-accent" id="reviewCount" hidden></span></a>
+      <a href="#logs" data-view="logs">Chat logs</a>
+      <a href="#grievances" data-view="grievances">Grievances <span class="badge badge-danger" id="grievanceCount" hidden></span></a>
+      <a href="#users" data-view="users" class="admin-only">Users &amp; audit</a>
+    </nav>
+    <div class="side-foot">
+      <a href="/" target="_blank" class="btn btn-sm" style="width:100%">Open chat</a>
+      <div class="whoami"><span id="whoami"></span><button class="btn btn-ghost btn-sm" id="logout">Sign out</button></div>
+    </div>
+  </aside>
+  <main class="content" id="content"></main>
+</div>
+
+<dialog id="dialog">
+  <form method="dialog" id="dialogForm">
+    <header class="dialog-head"><h2 id="dialogTitle"></h2><button class="btn btn-ghost btn-sm" value="cancel" formnovalidate aria-label="Close">✕</button></header>
+    <div class="dialog-body" id="dialogBody"></div>
+    <p class="form-error" id="dialogError" role="alert"></p>
+    <footer class="dialog-foot">
+      <button class="btn" value="cancel" formnovalidate>Cancel</button>
+      <button class="btn btn-primary" value="ok" id="dialogOk">Save</button>
+    </footer>
+  </form>
+</dialog>
+
+<script src="/static/js/admin.js"></script>
+</body>
+</html>

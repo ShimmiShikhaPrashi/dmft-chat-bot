@@ -1,0 +1,51 @@
+slug: kanker-district
+name_en: Uttar Bastar Kanker district
+name_hi: उत्तर बस्तर कांकेर ज़िला
+description: >-
+  Facts about Uttar Bastar Kanker (North Bastar Kanker) district of Chhattisgarh: location, formation, area,
+  rivers, tehsils and blocks (Kanker, Charama, Narharpur, Bhanupratappur, Durgukondal, Koyalibeda, Antagarh),
+  villages and administrative setup.
+keywords:
+  - kanker
+  - uttar bastar
+  - north bastar
+  - tehsil
+  - block
+  - district
+  - zila
+  - jila
+  - कांकेर
+  - उत्तर बस्तर
+  - तहसील
+  - विकासखंड
+  - ब्लॉक
+  - ज़िला
+  - जिला
+visibility: public
+instructions: ""
+sources:
+  - url: https://kanker.gov.in/en/about-district/
+    title: About Kanker District (kanker.gov.in)
+  - url: https://kanker.gov.in/en/tehsil/
+    title: Tehsils of Kanker District (kanker.gov.in)
+qa:
+  - question_en: How many tehsils are there in Kanker district?
+    question_hi: कांकेर ज़िले में कितनी तहसीलें हैं?
+    answer_en: |-
+      Uttar Bastar Kanker district has **7 tehsils**:
+      1. Kanker
+      2. Charama
+      3. Narharpur
+      4. Bhanupratappur
+      5. Durgukondal
+      6. Koyalibeda
+      7. Antagarh
+    answer_hi: |-
+      उत्तर बस्तर कांकेर ज़िले में **7 तहसीलें** हैं:
+      1. कांकेर
+      2. चारामा
+      3. नरहरपुर
+      4. भानुप्रतापपुर
+      5. दुर्गूकोंदल
+      6. कोयलीबेड़ा
+      7. अंतागढ़

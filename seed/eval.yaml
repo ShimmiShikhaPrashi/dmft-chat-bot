@@ -1,0 +1,39 @@
+# Retrieval evaluation set. `skill` is where the answer should come from; `skill: null` means the bot must refuse.
+# Run: python cli.py eval
+- {q: "What is DMFT?", skill: dmft-pmkkky}
+- {q: "DMFT क्या है?", skill: dmft-pmkkky}
+- {q: "dmft kya hai", skill: dmft-pmkkky}
+- {q: "What are the objectives of PMKKKY?", skill: dmft-pmkkky}
+- {q: "प्रधानमंत्री खनिज क्षेत्र कल्याण योजना का उद्देश्य क्या है?", skill: dmft-pmkkky}
+- {q: "What percentage of funds must go to high priority sectors?", skill: dmft-pmkkky}
+- {q: "उच्च प्राथमिकता वाले क्षेत्रों में कितना प्रतिशत खर्च करना होता है?", skill: dmft-pmkkky}
+- {q: "high priority sector me kitna paisa kharch hota hai", skill: dmft-pmkkky}
+- {q: "Can DMF funds be used for roads and bridges?", skill: dmft-pmkkky}
+- {q: "क्या DMF की राशि से सड़क और पुल बन सकते हैं?", skill: dmft-pmkkky}
+- {q: "What is the limit on administrative expenses?", skill: dmft-pmkkky}
+- {q: "प्रशासनिक व्यय की सीमा क्या है?", skill: dmft-pmkkky}
+- {q: "How far from the mine is a directly affected area?", skill: dmft-pmkkky}
+- {q: "प्रत्यक्ष प्रभावित क्षेत्र खदान से कितनी दूरी तक होता है?", skill: dmft-pmkkky}
+- {q: "Who is the chairman of the District Mineral Foundation?", skill: dmft-pmkkky}
+- {q: "DMF की शासी परिषद में कौन-कौन सदस्य होते हैं?", skill: dmft-pmkkky}
+- {q: "How often does the managing committee meet?", skill: dmft-pmkkky}
+- {q: "What is the endowment fund?", skill: dmft-pmkkky}
+- {q: "Is Gram Sabha approval needed in scheduled areas?", skill: dmft-pmkkky}
+- {q: "अनुसूचित क्षेत्रों में ग्राम सभा की स्वीकृति आवश्यक है क्या?", skill: dmft-pmkkky}
+- {q: "What information must the DMF publish on its website?", skill: dmft-pmkkky}
+- {q: "DMF का ऑडिट कौन करता है?", skill: dmft-pmkkky}
+- {q: "Can DMF money be transferred to the Chief Minister's Relief Fund?", skill: dmft-pmkkky}
+- {q: "Is housing covered under PMKKKY?", skill: dmft-pmkkky}
+- {q: "पंचवर्षीय परिप्रेक्ष्य योजना क्या है?", skill: dmft-pmkkky}
+- {q: "How many tehsils are in Kanker district?", skill: kanker-district}
+- {q: "कांकेर ज़िले में कितनी तहसीलें हैं?", skill: kanker-district}
+- {q: "kanker me kitne tehsil hai", skill: kanker-district}
+- {q: "When did Kanker become a district?", skill: kanker-district}
+- {q: "कांकेर ज़िले का क्षेत्रफल कितना है?", skill: kanker-district}
+- {q: "Which rivers flow through Kanker?", skill: kanker-district}
+- {q: "DMFT funded recruitment in health department Kanker", skill: kanker-notices}
+- {q: "What can you do?", skill: general}
+- {q: "What is the weather in Delhi today?", skill: null}
+- {q: "आज क्रिकेट मैच का स्कोर क्या है?", skill: null}
+- {q: "Write a poem about the ocean", skill: null}
+- {q: "bitcoin ka price kya hai", skill: null}

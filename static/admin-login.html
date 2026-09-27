@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in · DMFT Sahayak Admin</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/static/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+
+<main class="login">
+  <form class="login-card" id="loginForm" novalidate>
+    <div class="login-brand">
+      <div class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 23l8-14 8 14z" fill="currentColor"/></svg></div>
+      <div>
+        <h1>DMFT Sahayak Admin</h1>
+        <p>Knowledge base &amp; skills management · DMFT Uttar Bastar Kanker</p>
+      </div>
+    </div>
+    <p class="login-notice" id="loginNotice" role="status" hidden></p>
+    <div class="field"><label for="loginUser">Username</label><input class="input" id="loginUser" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required></div>
+    <div class="field">
+      <label for="loginPass">Password</label>
+      <div class="password-wrap">
+        <input class="input" id="loginPass" name="password" type="password" autocomplete="current-password" required>
+        <button class="btn btn-ghost btn-sm" type="button" id="togglePass" aria-pressed="false">Show</button>
+      </div>
+    </div>
+    <p class="form-error" id="loginError" role="alert"></p>
+    <button class="btn btn-primary" type="submit" id="loginSubmit" style="width:100%">Sign in</button>
+    <p class="login-foot"><a href="/">← Back to DMFT Sahayak chat</a></p>
+  </form>
+</main>
+
+<script src="/static/js/admin-login.js"></script>
+</body>
+</html>

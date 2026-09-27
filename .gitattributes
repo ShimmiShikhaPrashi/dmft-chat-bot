@@ -1,0 +1,11 @@
+# Never let git or editors rewrite binary documents (the old PDF was corrupted this way).
+*.pdf binary
+*.docx binary
+*.xlsx binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.woff2 binary
+*.py text eol=lf
+*.yaml text eol=lf
+*.html text eol=lf
