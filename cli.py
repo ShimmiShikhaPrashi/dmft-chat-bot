@@ -6,11 +6,14 @@
   python cli.py reindex                         re-extract and re-embed every document
   python cli.py refresh-sources                 re-fetch all URL sources now
   python cli.py eval [--file seed/eval.yaml]    retrieval quality check (no LLM calls)
+  python cli.py export-demo [--no-eval]         snapshot the public knowledge base for the GitHub Pages demo
 """
 
 import argparse
 import getpass
 import logging
+import shutil
+import subprocess
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -189,6 +192,29 @@ def cmd_eval(args) -> None:
             print("  ", " | ".join(str(x) for x in row))
 
 
+def cmd_export_demo(args) -> None:
+    """Public KB -> demo/kb/ (content + browser-model vectors), then check it with the demo's own engine."""
+    from app.demo_export import DEMO_DIR, export_content
+
+    node, npm = shutil.which("node"), shutil.which("npm")
+    if not node or not npm:
+        sys.exit("Node.js 18+ is needed to build the demo's search vectors: https://nodejs.org")
+    with SessionLocal() as db:
+        content = export_content(db)
+    files = sum(1 for d in content["docs"] if d["file"])
+    print(f"Exported public knowledge base v{content['kb_version']}: {len(content['skills'])} skills, "
+          f"{len(content['docs'])} documents ({files} files), {len(content['chunks'])} passages, "
+          f"{len(content['qa'])} curated Q&A. Internal skills and documents are not included.")
+    if not (DEMO_DIR / "node_modules" / "@huggingface" / "transformers").exists():
+        subprocess.run([npm, "install", "--no-audit", "--no-fund"], cwd=DEMO_DIR, check=True)
+    subprocess.run([node, "build-vectors.mjs"], cwd=DEMO_DIR, check=True)
+    if not args.no_eval:
+        result = subprocess.run([node, "eval.mjs"], cwd=DEMO_DIR)
+        if result.returncode:
+            print("Some eval questions failed - see above. The snapshot was still written.")
+    print("Next: commit demo/kb and push to main; GitHub Actions publishes the demo to GitHub Pages.")
+
+
 def main() -> None:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")  # Hindi output on Windows consoles
@@ -220,6 +246,10 @@ def main() -> None:
     p.add_argument("--file", default=str(BASE_DIR / "seed" / "eval.yaml"))
     p.add_argument("--verbose", action="store_true", help="print scores for every question")
     p.set_defaults(func=cmd_eval)
+
+    p = sub.add_parser("export-demo")
+    p.add_argument("--no-eval", action="store_true", help="skip the demo retrieval check")
+    p.set_defaults(func=cmd_export_demo)
 
     args = parser.parse_args()
     args.func(args)

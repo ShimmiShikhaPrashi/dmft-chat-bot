@@ -1,0 +1,13 @@
+{
+  "name": "dmft-sahayak-demo",
+  "private": true,
+  "description": "Builds and checks the static GitHub Pages demo of DMFT Sahayak (browser-side RAG).",
+  "type": "module",
+  "scripts": {
+    "build": "node build-vectors.mjs",
+    "eval": "node eval.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "4.3.0"
+  }
+}

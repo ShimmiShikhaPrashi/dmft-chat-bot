@@ -383,23 +383,25 @@
     const langBtn = `<button class="lang-pill" data-action="language" aria-label="${esc(tr("language"))}" aria-haspopup="menu">${esc(lang)}${icon("chevron-down", "ic-sm")}</button>`;
     const reviewCount = isStaff() && state.stats ? (state.stats.review_pending || 0) + (state.stats.grievances_open || 0) + (state.stats.documents_failed || 0) : 0;
     const bell = isStaff() ? `<button class="icon-btn" data-action="notifications" aria-label="${esc(tr("notificationsLabel"))}">${icon("bell")}${reviewCount ? `<span class="dot">${reviewCount > 99 ? "99+" : reviewCount}</span>` : ""}</button>` : "";
-    const limited = state.llm && (!state.llm.configured || state.llm.cooling_down_seconds > 0);
+    // window.DMFTDemo exists only on the static GitHub Pages demo (demo/demo-api.js).
+    const demo = window.DMFTDemo;
+    const limited = demo ? demo.isLimited() : state.llm && (!state.llm.configured || state.llm.cooling_down_seconds > 0);
 
     if (state.view === "chat") {
-      const status = isStaff() ? tr("enterpriseMode") : limited ? tr("limited") : tr("online");
+      const status = isStaff() ? tr("enterpriseMode") : demo ? demo.statusLabel(uiLang()) : limited ? tr("limited") : tr("online");
       bar.innerHTML = `
         <button class="icon-btn m-only" data-action="back" aria-label="${esc(tr("back"))}">${icon("back")}</button>
-        <div class="appbar-title"><img src="/static/img/logo.svg" alt="" class="logo">
+        <div class="appbar-title"><img src="static/img/logo.svg" alt="" class="logo">
           <div class="appbar-text"><strong>${esc(tr("assistant"))}</strong><span><i class="status-dot ${limited ? "limited" : ""}"></i>${esc(status)}</span></div></div>
         <div class="appbar-actions"><span class="d-only">${langBtn}</span><button class="icon-btn" data-action="chatMenu" aria-label="${esc(tr("menu"))}" aria-haspopup="menu">${icon("dots")}</button></div>`;
     } else if (state.view === "home") {
       bar.innerHTML = `
-        <div class="appbar-title"><img src="/static/img/logo.svg" alt="" class="logo">
+        <div class="appbar-title"><img src="static/img/logo.svg" alt="" class="logo">
           <div class="appbar-text"><strong>${esc(tr("brand"))}</strong><span class="${isStaff() ? "" : "tagline"}">${esc(isStaff() ? tr("enterprisePlatform") : tr("aiAssistant"))}</span></div></div>
         <div class="appbar-actions">${langBtn}${bell}</div>`;
     } else {
       bar.innerHTML = `
-        <div class="appbar-title"><img src="/static/img/logo.svg" alt="" class="logo m-only">
+        <div class="appbar-title"><img src="static/img/logo.svg" alt="" class="logo m-only">
           <div class="appbar-text"><strong>${esc(viewLabel(state.view))}</strong><span>${esc(tr("brand"))}</span></div></div>
         <div class="appbar-actions">${langBtn}${bell}</div>`;
     }
@@ -828,7 +830,7 @@
         </div>`;
     }).join('<hr style="border:0;border-top:1px dashed #e0e7f1;margin:28px 0">');
     paper.innerHTML = `
-      <div class="paper-head"><img src="/static/img/logo.svg" alt="">
+      <div class="paper-head"><img src="static/img/logo.svg" alt="">
         <div><strong>DMFT ${uiLang() === "hi" ? "उत्तर बस्तर कांकेर" : "Uttar Bastar Kanker"}</strong><span>${esc(tr("reportFor"))}</span></div>
         <div class="meta">${esc(tr("generated"))}: ${now.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}${isStaff() ? `<br>${esc(displayName())}` : ""}</div></div>
       ${sections}
@@ -1035,6 +1037,7 @@
            <button class="setting link" data-action="upload"><span class="icon-tile t-green">${icon("upload")}</span><div class="body"><strong>${esc(tr("uploadDoc"))}</strong><span>${esc(tr("uploadSub"))}</span></div>${icon("chevron-right", "ic-sm")}</button>
            <button class="setting link" data-action="logout"><span class="icon-tile t-rose">${icon("logout")}</span><div class="body"><strong>${esc(tr("signOut"))}</strong></div></button>
          </div>`
+      : window.DMFTDemo ? window.DMFTDemo.profileHTML({ lang: uiLang(), esc, icon })
       : `<form class="card" id="loginForm" style="margin-bottom:14px">
            <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px"><span class="icon-tile t-blue">${icon("shield")}</span><div><strong style="display:block">${esc(tr("staffSignIn"))}</strong><span style="font-size:12.5px;color:var(--text-3)">${esc(tr("staffSignInSub"))}</span></div></div>
            <div class="grid-2"><div class="field"><label for="lu">${esc(tr("username"))}</label><input class="input" id="lu" autocomplete="username" required></div>
@@ -1064,6 +1067,9 @@
       if (group.dataset.setting === "text") { state.textSize = value; store.set("dmft.textSize", value); }
       applyPreferences(); renderProfile();
     }));
+    if (window.DMFTDemo && !isStaff()) {
+      window.DMFTDemo.bindProfile(view, { lang: uiLang(), toast, rerender: () => { renderProfile(); renderAppbar(); } });
+    }
     const form = $("#loginForm", view);
     if (form) form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -1301,8 +1307,9 @@
     updateOnline();
     refreshHealth();
     setInterval(refreshHealth, 60000);
+    window.DMFTDemo?.onChange(() => { if (["chat", "home"].includes(state.view)) renderAppbar(); });
     setInterval(async () => { if (isStaff()) { await refreshStats(); renderAppbar(); renderNav(); } }, 120000);
-    if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});
+    if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
   }
 
   boot();

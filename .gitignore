@@ -5,3 +5,6 @@ __pycache__/
 storage/
 .venv/
 venv/
+demo/node_modules/
+demo/.build/
+_site/

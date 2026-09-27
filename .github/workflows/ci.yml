@@ -33,6 +33,42 @@ jobs:
       - name: Run tests
         run: python -m pytest -q
 
+  demo:
+    name: Demo search check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: demo/package-lock.json
+
+      - name: Install
+        working-directory: demo
+        run: npm ci --no-audit --no-fund
+
+      # The in-browser model (~120 MB) is downloaded once and cached between runs.
+      - uses: actions/cache@v4
+        with:
+          path: demo/node_modules/@huggingface/transformers/.cache
+          key: e5-small-q8-v1
+
+      # Runs seed/eval.yaml through demo/engine.js on the committed snapshot (demo/kb), exactly as the
+      # GitHub Pages demo answers.
+      - name: Evaluate demo retrieval
+        run: |
+          pip install --quiet pyyaml
+          mkdir -p demo/.build
+          python -c "import json, yaml; json.dump(yaml.safe_load(open('seed/eval.yaml', encoding='utf-8')), open('demo/.build/eval.json', 'w', encoding='utf-8'), ensure_ascii=False)"
+          cd demo && node eval.mjs
+
   image:
     name: Docker image (GHCR)
     needs: test

@@ -2,16 +2,16 @@
   "name": "DMFT Sahayak - Uttar Bastar Kanker",
   "short_name": "DMFT Sahayak",
   "description": "Official bilingual AI assistant of the District Mineral Foundation Trust, Uttar Bastar Kanker",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#f3f6fb",
   "theme_color": "#1f6fe5",
   "lang": "en-IN",
   "icons": [
-    { "src": "/static/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/static/img/icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "/static/img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "static/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "static/img/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "static/img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }

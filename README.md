@@ -140,6 +140,36 @@ The code lives on GitHub (https://github.com/ShimmiShikhaPrashi/dmft-chat-bot). 
 
 Progress is shown in the repository's **Actions** tab, and the image appears under **Packages**.
 
+### Demo on GitHub Pages (no server)
+
+For demonstrations before a server is ready, the same chat app runs as a static site on GitHub Pages (`.github/workflows/pages.yml`, published on every push to `main` that changes `static/` or `demo/`). Everything runs in the visitor's browser.
+
+| | Full server version | GitHub Pages demo |
+|---|---|---|
+| Knowledge | Live database; staff add documents any time | Snapshot of the **public** knowledge base (`demo/kb/`) |
+| Search | bge-m3 + BM25 hybrid, relevance gate | Same flow in the browser: multilingual-e5-small (downloaded once, about 120 MB) + BM25 |
+| Answers | Gemini, written from retrieved passages | Most relevant sentences with citations; Gemini answers if the viewer saves their own API key in Profile |
+| Curated Q&A, Hindi/English/Hinglish, document sharing, grievance form, Excel/PDF | Yes | Yes (grievances and feedback are kept in that browser only) |
+| Staff sign-in, admin panel, uploads, review queue | Yes | No |
+
+**Update the demo after the knowledge base changes:**
+
+```bash
+python cli.py export-demo     # public skills/documents/Q&A only -> demo/kb/, then runs the demo eval
+git add demo/kb && git commit -m "Refresh demo knowledge base" && git push
+```
+
+`export-demo` needs Node.js 18+. It never includes internal skills or internal documents, and it prints what it exported.
+
+- **Check locally before pushing:** run `python demo/assemble.py _site`, then `python -m http.server -d _site 8090`.
+- **Check retrieval:** run `node demo/eval.mjs --verbose` for the same eval set as the server, answered by the browser engine. CI runs it on every push.
+
+**One-time setup:** Settings → Pages → Build and deployment → Source: **GitHub Actions**. On a free GitHub plan, Pages needs a **public** repository; private repositories need GitHub Pro, Team or Enterprise. The demo contains only public official documents. The site address is `https://<user>.github.io/<repo>/`.
+
+When the demo is done, deploy the same code to a server with the Docker image, as described below. Nothing in the server version depends on the demo.
+
+### Running on a server
+
 **Server requirements:** Linux, 2+ vCPU, **4 GB RAM or more**, 15 GB disk, Docker, and outbound HTTPS to Gemini. Any of these works:
 - the district's NIC / State Data Centre server;
 - a cloud VM (e.g. AWS Lightsail / EC2, Azure, GCP, DigitalOcean).

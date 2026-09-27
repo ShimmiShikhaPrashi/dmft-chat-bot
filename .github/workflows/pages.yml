@@ -1,0 +1,48 @@
+name: Demo (GitHub Pages)
+
+# Publishes the static demo: the chat app + a snapshot of the public knowledge base, answered in the
+# browser (demo/). Refresh the snapshot with `python cli.py export-demo`, commit demo/kb, push.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "static/**"
+      - "demo/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Assemble site
+        run: python demo/assemble.py _site
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
