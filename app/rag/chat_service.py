@@ -85,7 +85,7 @@ def _related_questions(qa_matches: list, answered: QAInfo, lang: str) -> list[st
     """Other curated questions close to this one, offered as follow-up chips."""
     related = []
     for qa, score in qa_matches[1:6]:
-        question = (qa.question_hi if lang == "hi" else qa.question_en) or qa.question_en or qa.question_hi
+        question = (qa.question_hi if lang in ("hi", "cg") else qa.question_en) or qa.question_en or qa.question_hi
         if qa.id != answered.id and score >= 0.55 and question:
             related.append(question)
     return related[:3]
@@ -125,6 +125,13 @@ def _citation(snap: Snapshot, n: int, hit: Hit) -> dict:
 
 
 def _qa_answer(qa: QAInfo, lang: str) -> str:
+    """Curated answers are written in Hindi and/or English; Chhattisgarhi is translated from the Hindi one."""
+    if lang == "cg":
+        source = qa.answer_hi.strip() or qa.answer_en
+        try:
+            return generator.translate(source, "cg")
+        except generator.LLMUnavailable:
+            return source  # Hindi is understood by Chhattisgarhi speakers
     preferred, other = (qa.answer_hi, qa.answer_en) if lang == "hi" else (qa.answer_en, qa.answer_hi)
     if preferred.strip():
         return preferred
@@ -191,7 +198,7 @@ def answer(db: Session, message: str, session_id: str, audience: str, lang_pref:
 
 def _rewrite(history: list[tuple[str, str]], text: str, detected: str) -> tuple[str, str | None]:
     """Standalone question (resolving follow-ups) + English search query for Hindi/Hinglish input."""
-    needs_english = detected in ("hi", "hinglish")
+    needs_english = detected in ("hi", "cg", "hinglish")
     if not history and not needs_english:
         return text, None
     try:

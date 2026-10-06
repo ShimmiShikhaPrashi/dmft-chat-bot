@@ -128,6 +128,7 @@
   const LLM_NOTE = {
     en: "\n\n_The AI service did not respond, so this answer shows the relevant lines from the documents._",
     hi: "\n\n_AI सेवा ने उत्तर नहीं दिया, इसलिए यह उत्तर दस्तावेज़ों की प्रासंगिक पंक्तियाँ दिखाता है।_",
+    cg: "\n\n_AI सेवा ले जवाब नइ आइस, एकरे सेती ए जवाब म दस्तावेज़ के काम के लाइन दिखत हे।_",
   };
 
   async function chat(body) {
@@ -144,7 +145,7 @@
       embed,
       llm: hasLlm() ? gemini : null,
     });
-    if (result.llm_error) result.answer += LLM_NOTE[result.lang === "hi" ? "hi" : "en"];
+    if (result.llm_error) result.answer += LLM_NOTE[result.lang] || LLM_NOTE.en;
     if (engine.HISTORY_ROUTES.has(result.route)) {
       histories.set(sessionId, [...history, { q: result.standalone, a: result.answer }].slice(-6));
       saveHistories();
@@ -308,7 +309,7 @@
       keySet: "इस ब्राउज़र में एक कुंजी सहेजी गई है।",
     },
   };
-  const text = (lang) => TEXT[lang === "hi" ? "hi" : "en"];
+  const text = (lang) => TEXT[lang === "en" ? "en" : "hi"]; // Chhattisgarhi UI: Hindi settings text
 
   function modelStatus(lang) {
     const t = text(lang);

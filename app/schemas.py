@@ -4,7 +4,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 Visibility = Literal["public", "internal"]
-LangPref = Literal["auto", "en", "hi"]
+LangPref = Literal["auto", "en", "hi", "cg"]
 SkillAction = Literal["grievance_form"]
 
 

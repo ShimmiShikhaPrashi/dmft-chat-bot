@@ -436,7 +436,9 @@ button { -webkit-tap-highlight-color: transparent; }
 .settings-group { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 14px; }
 .setting { display: flex; align-items: center; gap: 12px; padding: 14px; border-bottom: 1px solid var(--border); }
 .setting:last-child { border-bottom: 0; }
-.setting .body { flex: 1; min-width: 0; }
+.setting .body { flex: 1 1 160px; min-width: 0; }
+/* With 4 options the switch wraps onto its own row on phones instead of squeezing the label. */
+.setting > .segmented { margin-left: auto; }
 .setting .body strong { display: block; font-size: 14.5px; }
 .setting .body span { font-size: 12.5px; color: var(--text-3); }
 .setting.link { cursor: pointer; width: 100%; border-left: 0; border-right: 0; border-top: 0; background: none; text-align: left; color: var(--text); }

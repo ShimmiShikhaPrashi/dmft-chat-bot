@@ -47,3 +47,13 @@
 - {q: "How to cook biryani", skill: null}
 - {q: "Kanker ka SP kaun hai", skill: null}
 - {q: "What is the salary of a teacher?", skill: null}
+# Chhattisgarhi (छत्तीसगढ़ी)
+- {q: "DMFT का हे?", skill: dmft-pmkkky}
+- {q: "उच्च प्राथमिकता वाले क्षेत्र म कतका प्रतिशत पइसा खरचा करना होथे?", skill: dmft-pmkkky}
+- {q: "का DMF के पइसा ले सड़क अउ पुल बन सकथे?", skill: dmft-pmkkky}
+- {q: "प्रशासनिक खरचा के सीमा कतका हे?", skill: dmft-pmkkky}
+- {q: "ग्राम सभा के मंजूरी जरूरी हे का?", skill: dmft-pmkkky}
+- {q: "DMF के ऑडिट कोन करथे?", skill: dmft-pmkkky}
+- {q: "कांकेर जिला म कतका तहसील हवय?", skill: kanker-district}
+- {q: "आज मौसम कइसे रहिही?", skill: null}
+- {q: "क्रिकेट मैच म कोन जीतिस?", skill: null}

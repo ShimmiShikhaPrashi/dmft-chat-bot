@@ -15,7 +15,7 @@
       brand: "DMFT Kanker", aiAssistant: "AI Assistant", enterprisePlatform: "Enterprise AI Platform",
       assistant: "DMFT Assistant", online: "Online", limited: "Limited mode", enterpriseMode: "Enterprise Mode",
       hello: "Hello!", iAm: "I am DMFT Assistant",
-      heroText: "Ask me anything about DMFT schemes, projects, guidelines and reports - in Hindi or English.",
+      heroText: "Ask me anything about DMFT schemes, projects, guidelines and reports - in English, Hindi or Chhattisgarhi.",
       placeholder: "Type your question…", inputLabel: "Your question",
       disclaimer: "Answers come only from official DMFT documents. Verify important details with the DMFT office.",
       home: "Home", chat: "Chat", history: "History", knowledge: "Knowledge", profile: "Profile", projects: "Projects",
@@ -89,7 +89,7 @@
       brand: "DMFT कांकेर", aiAssistant: "AI सहायक", enterprisePlatform: "एंटरप्राइज़ AI प्लेटफ़ॉर्म",
       assistant: "DMFT सहायक", online: "ऑनलाइन", limited: "सीमित मोड", enterpriseMode: "एंटरप्राइज़ मोड",
       hello: "नमस्ते!", iAm: "मैं DMFT सहायक हूँ",
-      heroText: "DMFT योजनाओं, परियोजनाओं, दिशानिर्देशों और रिपोर्टों के बारे में हिंदी या अंग्रेज़ी में कुछ भी पूछें।",
+      heroText: "DMFT योजनाओं, परियोजनाओं, दिशानिर्देशों और रिपोर्टों के बारे में हिंदी, छत्तीसगढ़ी या अंग्रेज़ी में कुछ भी पूछें।",
       placeholder: "अपना प्रश्न लिखें…", inputLabel: "आपका प्रश्न",
       disclaimer: "उत्तर केवल DMFT के आधिकारिक दस्तावेज़ों पर आधारित हैं। महत्वपूर्ण जानकारी की पुष्टि DMFT कार्यालय से करें।",
       home: "होम", chat: "चैट", history: "इतिहास", knowledge: "ज्ञानकोश", profile: "प्रोफ़ाइल", projects: "परियोजनाएँ",
@@ -161,6 +161,55 @@
     },
   };
 
+  // Chhattisgarhi (छत्तीसगढ़ी): what citizens read is translated; rarely seen and staff-only labels use Hindi.
+  I18N.cg = {
+    ...I18N.hi,
+    hello: "जय जोहार!", iAm: "मँय DMFT सहायक अंव",
+    heroText: "DMFT के योजना, काम, दिशानिर्देश अउ रिपोर्ट के बारे म छत्तीसगढ़ी, हिंदी या अंग्रेज़ी म कुछु भी पूछव।",
+    placeholder: "अपन सवाल लिखव…", inputLabel: "आपके सवाल",
+    disclaimer: "जवाब सिरिफ DMFT के सरकारी दस्तावेज़ ले दे जाथे। जरूरी जानकारी ल DMFT कार्यालय ले पक्का कर लेवव।",
+    newChat: "नवा गोठ-बात", recent: "हाल के", noRecent: "अभी कोनो गोठ-बात नइ हे",
+    cards: [
+      { icon: "doc", tone: "t-green", label: "DMFT का हे?", q: "DMFT का हे?" },
+      { icon: "chart", tone: "t-blue", label: "DMF के पइसा कइसे खरचा होथे", q: "PMKKKY के पइसा उच्च प्राथमिकता अउ दूसर प्राथमिकता वाले क्षेत्र म कइसे बाँटे जाथे? तालिका म बतावव।" },
+      { icon: "download", tone: "t-orange", label: "नवा दिशानिर्देश डाउनलोड करव", q: "PMKKKY दिशानिर्देश 2024 के PDF भेजव" },
+      { icon: "alert", tone: "t-rose", label: "शिकायत दर्ज करव", q: "मोला शिकायत दर्ज करना हे" },
+    ],
+    moreQuestions: ["कांकेर जिला म कतका तहसील हवय?", "DMF शासी परिषद के अध्यक्ष कोन होथे?", "एंडोमेंट फंड का हे?"],
+    chatEmptyTitle: "आज मँय आपके का मदद करंव?", chatEmptyText: "DMFT, PMKKKY, कांकेर जिला, सूचना या सरकारी दस्तावेज़ के बारे म पूछव।",
+    searching: "सरकारी दस्तावेज़ खोजत हंव…", preparing: "जवाब तियार होवत हे…", still: "थोरकुन रुकव…",
+    copied: "कॉपी हो गे", like: "बढ़िया", dislike: "बने नइ", listen: "सुनव", stop: "रोकव",
+    related: "जुड़े सवाल", relatedActions: "जुड़े काम", viewReport: "पूरा रिपोर्ट देखव",
+    save: "रिपोर्ट म सहेजव", saved: "रिपोर्ट म सहेज गे", open: "खोलव",
+    notAvailable: "सरकारी दस्तावेज़ म नइ मिलिस", thanks: "राय देहे बर धन्यवाद",
+    feedbackTitle: "ए जवाब म का कमी रिहिस?", fbReasons: ["गलत", "अधूरा", "काम के नइ", "गलत भाषा", "जुन्ना"],
+    fbPlaceholder: "अउ बतावव (जरूरी नइ)", submit: "भेजव", cancel: "रद्द करव",
+    thanksNegative: "धन्यवाद। DMFT टीम ए जवाब ल देखही।",
+    networkError: "DMFT सर्वर ले जुड़ नइ पाइस। इंटरनेट देख के फेर कोशिश करव।",
+    rateLimited: "बहुत जादा सवाल आ गे। एक मिनट बाद फेर कोशिश करव।",
+    offline: "आप ऑफ़लाइन हव। जवाब बर इंटरनेट जरूरी हे।",
+    gDescription: "अपन शिकायत ल लिखव", gSelect: "चुनव",
+    gNote: "आपके नाम अउ मोबाइल नंबर ल DMFT कांकेर सिरिफ ए शिकायत ल निपटाय बर उपयोग करही।", gSubmit: "शिकायत दर्ज करव",
+    historyTitle: "गोठ-बात के इतिहास", historySub: "सिरिफ ए डिवाइस म सहेजे गे हे।", searchHistory: "गोठ-बात खोजव",
+    earlier: "पहिली", clearAll: "सबो मिटाव", noHistory: "अभी कोनो गोठ-बात नइ हे",
+    noHistoryText: "आपके सवाल अउ जवाब इहाँ दिखही।", deleteConv: "मिटाव",
+    kbSub: "सरकारी दस्तावेज़ जेकर ले सहायक जवाब देथे।", searchDocs: "दस्तावेज़ खोजव", all: "सबो", askAbout: "पूछव",
+    noDocs: "कोनो दस्तावेज़ नइ मिलिस",
+    answerLang: "जवाब के भाषा", answerLangSub: "ऑटो: जेन भाषा म लिखहू, ओही म जवाब",
+    clearHistory: "गोठ-बात के इतिहास मिटाव", about: "DMFT सहायक के बारे म",
+    aboutText: "जिला खनिज संस्थान न्यास, उत्तर बस्तर कांकेर के सरकारी AI सहायक। जवाब सिरिफ DMFT कांकेर के छापे दस्तावेज़ ले बनथे; जरूरी जानकारी ल DMFT कार्यालय ले जरूर पक्का करव।",
+    staffSignInSub: "आम नागरिक ल खाता के जरूरत नइ हे।",
+    voiceHi: "हिंदी / छत्तीसगढ़ी म बोलव", voiceEn: "अंग्रेज़ी म बोलव", voiceSub: "बोल के लिखव", listening: "सुनत हंव… अब बोलव",
+    pasteText: "टेक्स्ट पेस्ट करव", pasteSub: "कोनो अंश पेस्ट करके ओकर बारे म पूछव",
+    send: "भेजव", back: "वापिस", question: "सवाल", answer: "जवाब", summarise: (title) => `"${title}" के सार बतावव`,
+  };
+  I18N.en.summarise = (title) => `Summarise "${title}"`;
+  I18N.hi.summarise = (title) => `"${title}" का सारांश बताइए`;
+  const LANGS = ["auto", "en", "hi", "cg"];
+  const LANG_PILL = { auto: "Auto", en: "En", hi: "हिं", cg: "छग" };
+  // BCP 47 tag for Chhattisgarhi is "hne"; speech uses the Hindi voice, which Chhattisgarhi listeners follow.
+  const HTML_LANG = { en: "en", hi: "hi", cg: "hne" };
+
   // ------------------------------------------------------------------ state & storage
 
   const store = {
@@ -170,7 +219,7 @@
 
   const state = {
     mode: "standard", user: null, view: "home",
-    langPref: ["auto", "en", "hi"].includes(store.get("dmft.langPref", "auto")) ? store.get("dmft.langPref", "auto") : "auto",
+    langPref: LANGS.includes(store.get("dmft.langPref", "auto")) ? store.get("dmft.langPref", "auto") : "auto",
     theme: store.get("dmft.theme", "system"), textSize: store.get("dmft.textSize", "normal"),
     conversations: store.get("dmft.conversations", []), reports: store.get("dmft.reports", []),
     current: null, busy: false, typing: null, meta: { blocks: [], skills: [], max_message_chars: 2000 },
@@ -178,13 +227,14 @@
     speaking: null, recognition: null,
   };
 
-  const uiLang = () => (state.langPref === "hi" ? "hi" : "en");
+  const uiLang = () => (state.langPref === "hi" || state.langPref === "cg" ? state.langPref : "en");
+  const isDevanagariUi = () => uiLang() !== "en";
   const tr = (key) => I18N[uiLang()][key] ?? I18N.en[key] ?? key;
   const isStaff = () => state.mode === "enterprise";
   const hasHindi = (text) => /[ऀ-ॿ]/.test(text || "");
 
   const newId = () => (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2, 12)).replace(/[^A-Za-z0-9_-]/g, "");
-  const timeOf = (ts) => new Date(ts).toLocaleTimeString(uiLang() === "hi" ? "hi-IN" : "en-IN", { hour: "numeric", minute: "2-digit" });
+  const timeOf = (ts) => new Date(ts).toLocaleTimeString(isDevanagariUi() ? "hi-IN" : "en-IN", { hour: "numeric", minute: "2-digit" });
   const dateOf = (ts) => new Date(ts).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
   const isToday = (ts) => new Date(ts).toDateString() === new Date().toDateString();
 
@@ -288,7 +338,7 @@
     const root = document.documentElement;
     if (state.theme === "system") root.removeAttribute("data-theme"); else root.dataset.theme = state.theme;
     root.dataset.text = state.textSize;
-    root.lang = uiLang();
+    root.lang = HTML_LANG[uiLang()];
   }
 
   function setLangPref(value) {
@@ -300,9 +350,10 @@
 
   function languageMenu(anchor) {
     openMenu(anchor, [
-      { label: `${tr("auto")} (हिं / En)`, icon: "globe", checked: state.langPref === "auto", onClick: () => setLangPref("auto") },
+      { label: `${tr("auto")} (En / हिं / छग)`, icon: "globe", checked: state.langPref === "auto", onClick: () => setLangPref("auto") },
       { label: "English", checked: state.langPref === "en", onClick: () => setLangPref("en") },
       { label: "हिन्दी", checked: state.langPref === "hi", onClick: () => setLangPref("hi") },
+      { label: "छत्तीसगढ़ी", checked: state.langPref === "cg", onClick: () => setLangPref("cg") },
     ]);
   }
 
@@ -379,7 +430,7 @@
 
   function renderAppbar() {
     const bar = $("#appbar");
-    const lang = { auto: "Auto", en: "En", hi: "हिं" }[state.langPref];
+    const lang = LANG_PILL[state.langPref];
     const langBtn = `<button class="lang-pill" data-action="language" aria-label="${esc(tr("language"))}" aria-haspopup="menu">${esc(lang)}${icon("chevron-down", "ic-sm")}</button>`;
     const reviewCount = isStaff() && state.stats ? (state.stats.review_pending || 0) + (state.stats.grievances_open || 0) + (state.stats.documents_failed || 0) : 0;
     const bell = isStaff() ? `<button class="icon-btn" data-action="notifications" aria-label="${esc(tr("notificationsLabel"))}">${icon("bell")}${reviewCount ? `<span class="dot">${reviewCount > 99 ? "99+" : reviewCount}</span>` : ""}</button>` : "";
@@ -542,7 +593,7 @@
       <div class="bot-body">
         <article class="answer-card ${refusal ? "refusal" : ""} ${error ? "error" : ""}">
           ${refusal ? `<div class="refusal-head">${icon("info", "ic-sm")}${esc(tr("notAvailable"))}</div>` : ""}
-          <div class="md" ${data.lang === "hi" ? 'lang="hi"' : ""}>${rendered.html}</div>
+          <div class="md" ${HTML_LANG[data.lang] && data.lang !== "en" ? `lang="${HTML_LANG[data.lang]}"` : ""}>${rendered.html}</div>
           <div class="slot-form"></div>
           ${data.documents?.length ? `<div class="doc-cards">${data.documents.map(docCardHTML).join("")}</div>` : ""}
           ${citations.length ? `<details class="sources"><summary>${icon("chevron-right")}${esc(tr("sources"))} (${citations.length})</summary>
@@ -756,8 +807,8 @@
     if (state.speaking === button) return stopSpeaking();
     stopSpeaking();
     const utterance = new SpeechSynthesisUtterance(R.toPlainText(markdown).replace(/[•|]/g, " "));
-    utterance.lang = lang === "hi" ? "hi-IN" : "en-IN";
-    const voice = speechSynthesis.getVoices().find((v) => v.lang === utterance.lang) || speechSynthesis.getVoices().find((v) => v.lang.startsWith(lang === "hi" ? "hi" : "en"));
+    utterance.lang = lang === "hi" || lang === "cg" ? "hi-IN" : "en-IN";
+    const voice = speechSynthesis.getVoices().find((v) => v.lang === utterance.lang) || speechSynthesis.getVoices().find((v) => v.lang.startsWith(utterance.lang.slice(0, 2)));
     if (voice) utterance.voice = voice;
     utterance.rate = 0.95;
     utterance.onend = stopSpeaking;
@@ -825,13 +876,13 @@
       const sources = message.data.citations || [];
       return `<div class="paper-section">
           <div class="q-label">${esc(tr("question"))}</div><h1 ${hasHindi(question) ? 'lang="hi"' : ""}>${esc(question || "-")}</h1>
-          <div class="paper-section"><h2>${esc(tr("answer"))}</h2><div class="md" ${message.data.lang === "hi" ? 'lang="hi"' : ""}>${html}</div></div>
+          <div class="paper-section"><h2>${esc(tr("answer"))}</h2><div class="md" ${HTML_LANG[message.data.lang] && message.data.lang !== "en" ? `lang="${HTML_LANG[message.data.lang]}"` : ""}>${html}</div></div>
           ${sources.length ? `<div class="paper-section"><h2>${esc(tr("sources"))}</h2>${sources.map((c) => `<div class="src-row">[${c.n}] ${esc(c.title)}${c.page ? ` - ${tr("page")} ${c.page}` : ""}</div>`).join("")}</div>` : ""}
         </div>`;
     }).join('<hr style="border:0;border-top:1px dashed #e0e7f1;margin:28px 0">');
     paper.innerHTML = `
       <div class="paper-head"><img src="static/img/logo.svg" alt="">
-        <div><strong>DMFT ${uiLang() === "hi" ? "उत्तर बस्तर कांकेर" : "Uttar Bastar Kanker"}</strong><span>${esc(tr("reportFor"))}</span></div>
+        <div><strong>DMFT ${isDevanagariUi() ? "उत्तर बस्तर कांकेर" : "Uttar Bastar Kanker"}</strong><span>${esc(tr("reportFor"))}</span></div>
         <div class="meta">${esc(tr("generated"))}: ${now.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}${isStaff() ? `<br>${esc(displayName())}` : ""}</div></div>
       ${sections}
       <div class="paper-foot">${esc(tr("reportNote"))}</div>`;
@@ -857,7 +908,7 @@
   // ------------------------------------------------------------------ grievance form
 
   function grievanceForm(lang, message) {
-    const dict = I18N[lang === "hi" ? "hi" : "en"];
+    const dict = I18N[lang] || I18N.en;
     const form = document.createElement("form");
     form.className = "form-card";
     if (message.grievanceTicket) {
@@ -950,9 +1001,9 @@
 
   function docListItem(d) {
     const type = docType(d.mime, d.source_url);
-    const name = uiLang() === "hi" && d.skill.name_hi ? d.skill.name_hi : d.skill.name_en;
+    const name = isDevanagariUi() && d.skill.name_hi ? d.skill.name_hi : d.skill.name_en;
     const snapshot = d.source_url && (type === "WEB" || type === "TXT");
-    const askText = uiLang() === "hi" ? `"${d.title}" का सारांश बताइए` : `Summarise "${d.title}"`;
+    const askText = I18N[uiLang()].summarise(d.title);
     return `<div class="list-item"><span class="type-badge type-${type}">${type}</span>
       <div class="body"><strong>${esc(d.title)}</strong><span>${esc(name)}${d.pages > 1 ? ` · ${d.pages} ${esc(tr("pages"))}` : ""} · ${dateOf(d.updated_at)}${d.visibility === "internal" ? ` · ${esc(tr("internal"))}` : ""}</span></div>
       <div class="trail">
@@ -977,7 +1028,7 @@
       </div>
       <div class="search-box">${icon("search")}<input class="input" id="docSearch" type="search" placeholder="${esc(tr("searchDocs"))}" value="${esc(state.docQuery)}"></div>
       <div class="chip-row"><button class="chip ${state.docFilter === "all" ? "active" : ""}" data-filter="all">${esc(tr("all"))} · ${docs.length}</button>
-        ${skills.map((s) => `<button class="chip ${state.docFilter === s.slug ? "active" : ""}" data-filter="${esc(s.slug)}">${esc(uiLang() === "hi" && s.name_hi ? s.name_hi : s.name_en)}</button>`).join("")}</div>
+        ${skills.map((s) => `<button class="chip ${state.docFilter === s.slug ? "active" : ""}" data-filter="${esc(s.slug)}">${esc(isDevanagariUi() && s.name_hi ? s.name_hi : s.name_en)}</button>`).join("")}</div>
       ${shown.length ? `<div class="list">${shown.map(docListItem).join("")}</div>` : `<div class="empty-state"><div class="icon-tile t-green">${icon("book", "ic-lg")}</div><h3>${esc(tr("noDocs"))}</h3></div>`}
     </div>`;
     const search = $("#docSearch", view);
@@ -1050,7 +1101,7 @@
       ${account}
       <div class="group-label">${esc(tr("settings"))}</div>
       <div class="settings-group">
-        <div class="setting" style="flex-wrap:wrap"><span class="icon-tile t-blue">${icon("globe")}</span><div class="body"><strong>${esc(tr("answerLang"))}</strong><span>${esc(tr("answerLangSub"))}</span></div>${segmented("lang", state.langPref, [["auto", tr("auto")], ["en", "English"], ["hi", "हिन्दी"]])}</div>
+        <div class="setting" style="flex-wrap:wrap"><span class="icon-tile t-blue">${icon("globe")}</span><div class="body"><strong>${esc(tr("answerLang"))}</strong><span>${esc(tr("answerLangSub"))}</span></div>${segmented("lang", state.langPref, [["auto", tr("auto")], ["en", "English"], ["hi", "हिन्दी"], ["cg", "छत्तीसगढ़ी"]])}</div>
         <div class="setting" style="flex-wrap:wrap"><span class="icon-tile t-purple">${icon("sun")}</span><div class="body"><strong>${esc(tr("theme"))}</strong></div>${segmented("theme", state.theme, [["system", tr("system")], ["light", tr("light")], ["dark", tr("dark")]])}</div>
         <div class="setting" style="flex-wrap:wrap"><span class="icon-tile t-teal">${icon("text")}</span><div class="body"><strong>${esc(tr("textSize"))}</strong></div>${segmented("text", state.textSize, [["normal", tr("normal")], ["large", tr("large")]])}</div>
         <button class="setting link" data-action="clearHistory"><span class="icon-tile t-rose">${icon("trash")}</span><div class="body"><strong>${esc(tr("clearHistory"))}</strong><span>${esc(tr("clearHistorySub"))}</span></div></button>
@@ -1144,7 +1195,7 @@
     form.innerHTML = `
       <div class="field"><label>${esc(tr("chooseFiles"))}</label><input class="input" type="file" name="files" multiple required accept=".pdf,.docx,.xlsx,.csv,.txt,.md,.html,.htm,.png,.jpg,.jpeg"></div>
       <div class="grid-2">
-        <div class="field"><label>${esc(tr("skill"))}</label><select class="input" name="skill_id">${skills.map((s) => `<option value="${s.id}" ${s.id === preset?.id ? "selected" : ""}>${esc(uiLang() === "hi" && s.name_hi ? s.name_hi : s.name_en)}</option>`).join("")}</select></div>
+        <div class="field"><label>${esc(tr("skill"))}</label><select class="input" name="skill_id">${skills.map((s) => `<option value="${s.id}" ${s.id === preset?.id ? "selected" : ""}>${esc(isDevanagariUi() && s.name_hi ? s.name_hi : s.name_en)}</option>`).join("")}</select></div>
         <div class="field"><label>${esc(tr("visibility"))}</label><select class="input" name="visibility"><option value="public">${esc(tr("public_"))}</option><option value="internal">${esc(tr("internal_"))}</option></select></div>
       </div>
       <p class="form-error" role="alert"></p>
@@ -1217,6 +1268,7 @@
       { label: `${tr("language")}: ${tr("auto")}`, icon: "globe", checked: state.langPref === "auto", onClick: () => setLangPref("auto") },
       { label: "English", checked: state.langPref === "en", onClick: () => setLangPref("en") },
       { label: "हिन्दी", checked: state.langPref === "hi", onClick: () => setLangPref("hi") },
+      { label: "छत्तीसगढ़ी", checked: state.langPref === "cg", onClick: () => setLangPref("cg") },
       "-",
       { label: tr("history"), icon: "history", onClick: () => go("history") },
       { label: tr("knowledge"), icon: "book", onClick: () => go("knowledge") },

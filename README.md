@@ -8,7 +8,18 @@ What it does:
 - **Refuses rather than guesses.** When the information isn't in the documents, it says so.
 - **Can be trained through an admin panel.** Staff add *skill packs*, upload documents and URLs, and work through a review queue of questions the bot could not answer.
 
-Citizens can type or paste questions in **Hindi (Devanagari)**, **English**, or **Hinglish** (romanised Hindi, e.g. "kanker me kitne tehsil hai"). The bot replies in the user's language, or in whichever language is chosen with the EN / हिं switch.
+Citizens can type or paste questions in any of these:
+- **English**
+- **Hindi** (Devanagari)
+- **Chhattisgarhi** (छत्तीसगढ़ी, e.g. "कांकेर जिला म कतका तहसील हवय?")
+- **Hinglish** (romanised Hindi, e.g. "kanker me kitne tehsil hai")
+
+The bot replies in the user's language, or in whichever language is chosen with the En / हिं / छग switch.
+
+**How Chhattisgarhi is handled:**
+- **Detection:** Chhattisgarhi is told apart from Hindi by words standard Hindi does not use (हे, हवय, अउ, मोला, कतका, करथे …).
+- **Answers:** Gemini is told to write natural Chhattisgarhi rather than word-for-word Hindi, keeping terms such as DMFT, PMKKKY and PMU unchanged.
+- **Curated Q&A:** these are written in Hindi/English and translated to Chhattisgarhi when Gemini is available. Otherwise the Hindi answer is shown.
 
 ---
 
@@ -267,8 +278,8 @@ When Gemini is rate-limited or down, the bot pauses LLM calls (15 minutes for a 
 ## Tests and quality checks
 
 ```bash
-python -m pytest -q          # 42 tests, fast fake embedder, no API key needed
-python cli.py eval --verbose # retrieval + refusal check on seed/eval.yaml (37 hi/en/hinglish questions)
+python -m pytest -q          # 60 tests, fast fake embedder, no API key needed
+python cli.py eval --verbose # retrieval + refusal check on seed/eval.yaml (56 en/hi/cg/hinglish questions)
 ```
 
 Add real citizen questions to `seed/eval.yaml` over time. Rerun the eval after changing thresholds or the embedding model.

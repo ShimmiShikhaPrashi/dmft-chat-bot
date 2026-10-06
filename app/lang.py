@@ -1,4 +1,4 @@
-"""Bilingual (Hindi / English / Hinglish) text handling."""
+"""Multilingual (English / Hindi / Chhattisgarhi / Hinglish) text handling."""
 
 import re
 import unicodedata
@@ -34,6 +34,28 @@ HI_STOPWORDS = {
     "कितनी", "भी", "तो", "ही", "हो", "होता", "होती", "होते", "जो", "एक", "लिए", "मुझे", "मेरा", "मेरी",
     "आप", "आपका", "कृपया", "बताएं", "बताइए", "बताओ", "जानकारी", "गया", "गई", "कर", "करें", "करना",
     "रहा", "रही", "रहे", "द्वारा", "तक", "साथ", "अपने", "अपना", "किस", "किसी", "सकते", "सकता",
+}
+
+# Chhattisgarhi (छत्तीसगढ़ी) words that standard Hindi does not use, or spells differently (हे vs है,
+# नइ vs नहीं, कोन vs कौन). Used to tell a Chhattisgarhi question from a Hindi one.
+CG_MARKERS = {
+    "हवय", "हावय", "हावे", "हवे", "हे", "हें", "हावंय", "रिहिस", "रहिस", "रहिन", "अउ", "घलो", "घलव",
+    "हमर", "हमन", "तुमन", "तुंहर", "तुम्हर", "मोला", "तोला", "ओला", "एला", "उंकर", "ओकर", "एकर", "तोर",
+    "काबर", "कइसे", "कतका", "कतेक", "कोन", "काय", "कते", "कती", "बताव", "बतावव", "बताहू", "नइ", "नइहे",
+    "नइए", "खातिर", "बर", "जम्मो", "सबो", "बिकट", "गेहे", "मिलही", "होही", "करही", "जाही", "सकथे", "सकथंव",
+    "मँय", "हंव", "हँव", "अंव", "पइसा", "खरचा", "करई", "देवव", "भेजव", "करव", "बतावौ", "रहिही", "मिलथे",
+}
+# Present-tense verbs: करथे, होथे, मिलथे, जाथें (Hindi uses करता है / होते हैं).
+CG_VERB_RE = re.compile(r"^[\u0900-\u097F]{2,}थें?$")
+# Postpositions shared with other dialects: they support a Chhattisgarhi reading but never decide it.
+CG_SUPPORT = {"म", "ला", "मन", "मोर", "ले"}
+
+# Chhattisgarhi function words: ignored by BM25 like the Hindi stopwords.
+CG_STOPWORDS = {
+    "हे", "हें", "हवय", "हावय", "हावे", "अउ", "म", "ला", "ले", "बर", "मन", "का", "काय", "कोन", "कतका", "कतेक",
+    "कइसे", "काबर", "मोला", "मोर", "हमर", "हमन", "तुमन", "बताव", "बतावव", "नइ", "घलो", "ए", "ओ", "एकर", "ओकर",
+    "रिहिस", "रहिस", "होथे", "करथे", "सकथे", "खातिर", "जम्मो", "सबो", "मँय", "हंव", "हँव", "अंव", "कते", "भेजव",
+    "करव", "देवव",
 }
 
 # Romanised Hindi function words: ignored by BM25 like English/Hindi stopwords.
@@ -89,19 +111,29 @@ def tokenize(text: str) -> list[str]:
         tok
         for tok in TOKEN_RE.findall(search_key(text))
         if tok not in EN_STOPWORDS and tok not in HI_STOPWORDS and tok not in ROMAN_HI_STOPWORDS
+        and tok not in CG_STOPWORDS
         and (len(tok) > 1 or tok.isdigit())
     ]
 
 
+def is_chhattisgarhi(text: str) -> bool:
+    """Devanagari text written in Chhattisgarhi rather than standard Hindi: two Chhattisgarhi words,
+    or one together with a shared postposition (म, ला, मन) or in a short message."""
+    words = re.findall(r"[\u0900-\u097F]+", unicodedata.normalize("NFC", text))
+    strong = sum(1 for w in words if w in CG_MARKERS or CG_VERB_RE.match(w))
+    support = sum(1 for w in words if w in CG_SUPPORT)
+    return strong >= 2 or (strong == 1 and (support >= 1 or len(words) <= 8))
+
+
 def detect_language(text: str) -> str:
-    """Return 'hi' (Devanagari), 'hinglish' (romanised Hindi) or 'en'."""
+    """Return 'hi' (Devanagari Hindi), 'cg' (Chhattisgarhi), 'hinglish' (romanised Hindi) or 'en'."""
     deva = len(DEVANAGARI.findall(text))
     latin = len(LATIN.findall(text))
     if deva == 0 and latin == 0:
         return "en"
     deva_words = len(re.findall(r"[\u0900-\u097F]+", text))
     if deva / (deva + latin) > 0.3 or deva_words >= 2:
-        return "hi"
+        return "cg" if is_chhattisgarhi(text) else "hi"
     words = re.findall(r"[a-z]+", text.lower())
     if words:
         hits = sum(1 for w in words if w in HINGLISH_WORDS)
@@ -110,10 +142,15 @@ def detect_language(text: str) -> str:
     return "en"
 
 
+ANSWER_LANGUAGES = ("en", "hi", "cg")
+
+
 def answer_language(detected: str, preference: str = "auto") -> str:
     """Language the bot replies in. Hinglish questions get simple Hindi replies."""
-    if preference in ("en", "hi"):
+    if preference in ANSWER_LANGUAGES:
         return preference
+    if detected == "cg":
+        return "cg"
     return "hi" if detected in ("hi", "hinglish") else "en"
 
 
@@ -168,6 +205,16 @@ MESSAGES = {
             "- शिकायत दर्ज करना\n\n"
             "आप अपना प्रश्न हिंदी या अंग्रेज़ी में लिख या पेस्ट कर सकते हैं।"
         ),
+        "cg": (
+            "जय जोहार! मँय **DMFT सहायक** अंव — जिला खनिज संस्थान न्यास (DMFT), उत्तर बस्तर कांकेर के सहायक।\n\n"
+            "मँय ए बात मन म आपके मदद कर सकथंव:\n"
+            "- DMFT अउ प्रधानमंत्री खनिज क्षेत्र कल्याण योजना (PMKKKY) के जानकारी\n"
+            "- प्राथमिकता वाले क्षेत्र अउ पइसा खरचा करे के नियम\n"
+            "- कांकेर जिला के जानकारी अउ DMFT के सूचना\n"
+            "- सरकारी दस्तावेज़ (डाउनलोड करे बर दे सकथंव)\n"
+            "- शिकायत दर्ज करई\n\n"
+            "आप अपन सवाल छत्तीसगढ़ी, हिंदी या अंग्रेज़ी म लिख या पेस्ट कर सकथव।"
+        ),
     },
     "not_found": {
         "en": (
@@ -180,30 +227,41 @@ MESSAGES = {
             "आपका प्रश्न दर्ज कर लिया गया है ताकि DMFT टीम यह जानकारी जोड़ सके। "
             "तत्काल जानकारी के लिए कृपया DMFT कार्यालय, कलेक्टोरेट, कांकेर से संपर्क करें।"
         ),
+        "cg": (
+            "ए जानकारी DMFT सहायक म अभी के सरकारी दस्तावेज़ मन म नइ हे। "
+            "आपके सवाल ल दर्ज कर ले गे हे, ताकि DMFT टीम ए जानकारी ल जोड़ सकय। "
+            "जल्दी जानकारी बर DMFT कार्यालय, कलेक्टोरेट, कांकेर ले संपर्क करव।"
+        ),
     },
     "llm_unavailable": {
         "en": "The AI service is temporarily unavailable. These are the most relevant passages from the official documents:",
         "hi": "AI सेवा अभी उपलब्ध नहीं है। आधिकारिक दस्तावेज़ों के सबसे प्रासंगिक अंश नीचे दिए गए हैं:",
+        "cg": "AI सेवा अभी चालू नइ हे। सरकारी दस्तावेज़ मन के सबले काम के अंश तरी म दे गे हे:",
     },
     "documents_found": {
         "en": "Here are the official documents related to your request:",
         "hi": "आपके अनुरोध से संबंधित आधिकारिक दस्तावेज़ ये हैं:",
+        "cg": "आपके माँग ले जुड़े सरकारी दस्तावेज़ ए मन हें:",
     },
     "grievance_intro": {
         "en": "I can register your grievance with DMFT Kanker. Please fill in the form below.",
         "hi": "मैं DMFT कांकेर में आपकी शिकायत दर्ज कर सकता हूँ। कृपया नीचे दिया गया फ़ॉर्म भरें।",
+        "cg": "मँय DMFT कांकेर म आपके शिकायत दर्ज कर सकथंव। तरी दे गे फॉर्म ल भरव।",
     },
     "grievance_created": {
         "en": "Your grievance has been registered. Ticket number: **{ticket}**. Please keep it for future reference.",
         "hi": "आपकी शिकायत दर्ज हो गई है। टिकट संख्या: **{ticket}**। कृपया इसे भविष्य के लिए सुरक्षित रखें।",
+        "cg": "आपके शिकायत दर्ज हो गे हे। टिकट नंबर: **{ticket}**। एला आगू बर सम्हाल के रखव।",
     },
     "error": {
         "en": "Sorry, something went wrong while answering. Please try again.",
         "hi": "क्षमा करें, उत्तर देते समय कोई त्रुटि हुई। कृपया पुनः प्रयास करें।",
+        "cg": "माफी देहू, जवाब देवत बेरा कुछु गड़बड़ हो गे। फेर कोशिश करव।",
     },
     "too_long": {
         "en": "Your message is too long. Please keep it under {limit} characters.",
         "hi": "आपका संदेश बहुत लंबा है। कृपया इसे {limit} अक्षरों से कम रखें।",
+        "cg": "आपके संदेश बहुत लंबा हे। एला {limit} अक्षर ले कम रखव।",
     },
 }
 
@@ -222,9 +280,17 @@ SUGGESTIONS = {
         "PMKKKY दिशानिर्देश की PDF भेजें",
         "शिकायत दर्ज करें",
     ],
+    "cg": [
+        "DMFT का हे?",
+        "PMKKKY म उच्च प्राथमिकता वाले क्षेत्र कोन-कोन हें?",
+        "कांकेर जिला म कतका तहसील हवय?",
+        "PMKKKY दिशानिर्देश के PDF भेजव",
+        "शिकायत दर्ज करना हे",
+    ],
 }
 
 
 def t(key: str, lang: str, **kwargs) -> str:
-    text = MESSAGES[key]["hi" if lang == "hi" else "en"]
+    variants = MESSAGES[key]
+    text = variants.get(lang) or variants["hi" if lang == "cg" else "en"]
     return text.format(**kwargs) if kwargs else text
