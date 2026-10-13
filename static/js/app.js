@@ -1088,7 +1088,6 @@
            <button class="setting link" data-action="upload"><span class="icon-tile t-green">${icon("upload")}</span><div class="body"><strong>${esc(tr("uploadDoc"))}</strong><span>${esc(tr("uploadSub"))}</span></div>${icon("chevron-right", "ic-sm")}</button>
            <button class="setting link" data-action="logout"><span class="icon-tile t-rose">${icon("logout")}</span><div class="body"><strong>${esc(tr("signOut"))}</strong></div></button>
          </div>`
-      : window.DMFTDemo ? window.DMFTDemo.profileHTML({ lang: uiLang(), esc, icon })
       : `<form class="card" id="loginForm" style="margin-bottom:14px">
            <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px"><span class="icon-tile t-blue">${icon("shield")}</span><div><strong style="display:block">${esc(tr("staffSignIn"))}</strong><span style="font-size:12.5px;color:var(--text-3)">${esc(tr("staffSignInSub"))}</span></div></div>
            <div class="grid-2"><div class="field"><label for="lu">${esc(tr("username"))}</label><input class="input" id="lu" autocomplete="username" required></div>
@@ -1104,6 +1103,7 @@
         <div class="setting" style="flex-wrap:wrap"><span class="icon-tile t-blue">${icon("globe")}</span><div class="body"><strong>${esc(tr("answerLang"))}</strong><span>${esc(tr("answerLangSub"))}</span></div>${segmented("lang", state.langPref, [["auto", tr("auto")], ["en", "English"], ["hi", "हिन्दी"], ["cg", "छत्तीसगढ़ी"]])}</div>
         <div class="setting" style="flex-wrap:wrap"><span class="icon-tile t-purple">${icon("sun")}</span><div class="body"><strong>${esc(tr("theme"))}</strong></div>${segmented("theme", state.theme, [["system", tr("system")], ["light", tr("light")], ["dark", tr("dark")]])}</div>
         <div class="setting" style="flex-wrap:wrap"><span class="icon-tile t-teal">${icon("text")}</span><div class="body"><strong>${esc(tr("textSize"))}</strong></div>${segmented("text", state.textSize, [["normal", tr("normal")], ["large", tr("large")]])}</div>
+        ${window.DMFTDemo ? window.DMFTDemo.settingsHTML({ lang: uiLang(), esc, icon }) : ""}
         <button class="setting link" data-action="clearHistory"><span class="icon-tile t-rose">${icon("trash")}</span><div class="body"><strong>${esc(tr("clearHistory"))}</strong><span>${esc(tr("clearHistorySub"))}</span></div></button>
       </div>
       <div class="group-label">${esc(tr("about"))}</div>
@@ -1118,9 +1118,7 @@
       if (group.dataset.setting === "text") { state.textSize = value; store.set("dmft.textSize", value); }
       applyPreferences(); renderProfile();
     }));
-    if (window.DMFTDemo && !isStaff()) {
-      window.DMFTDemo.bindProfile(view, { lang: uiLang(), toast, rerender: () => { renderProfile(); renderAppbar(); } });
-    }
+    window.DMFTDemo?.bindSettings(view, { lang: uiLang(), toast, rerender: () => { renderProfile(); renderAppbar(); } });
     const form = $("#loginForm", view);
     if (form) form.addEventListener("submit", async (event) => {
       event.preventDefault();

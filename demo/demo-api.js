@@ -230,7 +230,7 @@
 
   async function handle(method, path, body) {
     if (path === "/api/admin/login") {
-      return json({ detail: "Staff sign-in is part of the full server version. This demo has no staff accounts." }, 403);
+      return json({ detail: "Staff sign-in is available on the DMFT office server. / स्टाफ़ लॉगिन DMFT कार्यालय के सर्वर पर उपलब्ध है।" }, 403);
     }
     if (path === "/api/admin/logout") return json({ ok: true });
     if (path.startsWith("/api/admin/")) return json({ detail: "Not signed in" }, 401);
@@ -286,38 +286,24 @@
   const TEXT = {
     en: {
       loading: "Demo · loading…", model: (p) => `Demo · search model ${p}%`, ai: "Demo · AI answers",
-      docs: "Demo · document answers", keyword: "Demo · keyword search", title: "Demo version",
-      sub: "Runs entirely in your browser",
-      about: (k) => `This demo runs on GitHub Pages without a server. It answers from a snapshot of the public knowledge base: ${k.docs} documents, ${k.passages} passages and ${k.qa} curated answers (exported ${k.date}). Staff sign-in, uploads, the admin panel and the review queue are part of the full server version.`,
-      modelLabel: "Search model", ready: "Ready (multilingual, Hindi + English)", loadingModel: (p) => `Downloading once, about 120 MB… ${p}%`,
-      failed: "Unavailable, using keyword search", idle: "Starting…",
-      keyLabel: "Gemini API key (optional)", keyPlaceholder: "Paste a key to get AI-written answers",
-      modelName: "Gemini model", save: "Save key", remove: "Remove key", saved: "Gemini key saved in this browser", removed: "Gemini key removed",
-      keyHint: "Without a key, answers show the most relevant lines from the documents with citations. With a key, Gemini writes the answer from the same passages, as on the server. The key is stored only in this browser and sent only to Google. Use a key restricted to the Generative Language API.",
-      keySet: "A key is saved in this browser.",
+      docs: "Demo · document answers", keyword: "Demo · keyword search",
+      keyLabel: "AI answers (Gemini key)", keyOff: "Optional. Without a key, answers quote the documents.",
+      keyOn: "On. The key is saved in this browser.", add: "Add key", change: "Change",
+      keyPlaceholder: "Paste a Gemini API key", modelName: "Gemini model",
+      save: "Save", remove: "Remove key", saved: "Gemini key saved in this browser", removed: "Gemini key removed",
+      keyHint: "Stored only in this browser and sent only to Google. Use a key restricted to the Generative Language API.",
     },
     hi: {
       loading: "डेमो · लोड हो रहा है…", model: (p) => `डेमो · सर्च मॉडल ${p}%`, ai: "डेमो · AI उत्तर",
-      docs: "डेमो · दस्तावेज़ उत्तर", keyword: "डेमो · कीवर्ड खोज", title: "डेमो संस्करण",
-      sub: "पूरी तरह आपके ब्राउज़र में चलता है",
-      about: (k) => `यह डेमो बिना सर्वर के GitHub Pages पर चलता है। यह सार्वजनिक ज्ञान-आधार की प्रति से उत्तर देता है: ${k.docs} दस्तावेज़, ${k.passages} अंश और ${k.qa} तैयार उत्तर (${k.date} को निर्यात)। स्टाफ़ साइन-इन, अपलोड, एडमिन पैनल और समीक्षा कतार पूर्ण सर्वर संस्करण में उपलब्ध हैं।`,
-      modelLabel: "सर्च मॉडल", ready: "तैयार (बहुभाषी, हिंदी + अंग्रेज़ी)", loadingModel: (p) => `एक बार डाउनलोड, लगभग 120 MB… ${p}%`,
-      failed: "उपलब्ध नहीं, कीवर्ड खोज का उपयोग", idle: "शुरू हो रहा है…",
-      keyLabel: "Gemini API कुंजी (वैकल्पिक)", keyPlaceholder: "AI द्वारा लिखे उत्तर के लिए कुंजी पेस्ट करें",
-      modelName: "Gemini मॉडल", save: "कुंजी सहेजें", remove: "कुंजी हटाएँ", saved: "Gemini कुंजी इस ब्राउज़र में सहेजी गई", removed: "Gemini कुंजी हटाई गई",
-      keyHint: "कुंजी के बिना, उत्तर दस्तावेज़ों की सबसे प्रासंगिक पंक्तियाँ संदर्भ सहित दिखाते हैं। कुंजी के साथ, Gemini उन्हीं अंशों से उत्तर लिखता है, जैसे सर्वर पर। कुंजी केवल इस ब्राउज़र में रहती है और केवल Google को भेजी जाती है।",
-      keySet: "इस ब्राउज़र में एक कुंजी सहेजी गई है।",
+      docs: "डेमो · दस्तावेज़ उत्तर", keyword: "डेमो · कीवर्ड खोज",
+      keyLabel: "AI उत्तर (Gemini कुंजी)", keyOff: "वैकल्पिक। कुंजी के बिना उत्तर दस्तावेज़ों के अंश दिखाते हैं।",
+      keyOn: "चालू। कुंजी इस ब्राउज़र में सहेजी गई है।", add: "कुंजी जोड़ें", change: "बदलें",
+      keyPlaceholder: "Gemini API कुंजी पेस्ट करें", modelName: "Gemini मॉडल",
+      save: "सहेजें", remove: "कुंजी हटाएँ", saved: "Gemini कुंजी इस ब्राउज़र में सहेजी गई", removed: "Gemini कुंजी हटाई गई",
+      keyHint: "कुंजी केवल इस ब्राउज़र में रहती है और केवल Google को भेजी जाती है।",
     },
   };
   const text = (lang) => TEXT[lang === "en" ? "en" : "hi"]; // Chhattisgarhi UI: Hindi settings text
-
-  function modelStatus(lang) {
-    const t = text(lang);
-    if (status.model === "ready") return t.ready;
-    if (status.model === "loading") return t.loadingModel(status.progress);
-    if (status.model === "failed") return t.failed;
-    return t.idle;
-  }
 
   window.DMFTDemo = {
     onChange(fn) { listeners.add(fn); },
@@ -329,39 +315,38 @@
       if (hasLlm()) return t.ai;
       return status.model === "failed" ? t.keyword : t.docs;
     },
-    profileHTML({ lang, esc, icon }) {
+    // One collapsed row in Profile → Settings; the rest of Profile (staff sign-in included) is the normal app.
+    settingsHTML({ lang, esc, icon }) {
       const t = text(lang);
       const s = settings();
-      const facts = kb
-        ? { docs: kb.docs.length, passages: kb.chunks.length, qa: kb.qa.length, date: new Date(kb.exported_at).toLocaleDateString(lang === "hi" ? "hi-IN" : "en-IN", { day: "numeric", month: "short", year: "numeric" }) }
-        : { docs: "…", passages: "…", qa: "…", date: "…" };
-      return `<div class="card" id="demoCard" style="margin-bottom:14px">
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px"><span class="icon-tile t-orange">${icon("info")}</span>
-          <div><strong style="display:block">${esc(t.title)}</strong><span style="font-size:12.5px;color:var(--text-3)">${esc(t.sub)}</span></div></div>
-        <p style="font-size:13.5px;color:var(--text-2);margin:0 0 10px">${esc(t.about(facts))}</p>
-        <p style="font-size:13.5px;margin:0 0 14px"><strong>${esc(t.modelLabel)}:</strong> <span id="demoModelStatus">${esc(modelStatus(lang))}</span></p>
-        <form id="demoKeyForm" autocomplete="off">
-          <div class="field"><label for="demoKey">${esc(t.keyLabel)}</label>
-            <input class="input" id="demoKey" type="password" placeholder="${esc(s.key ? t.keySet : t.keyPlaceholder)}" spellcheck="false"></div>
-          <div class="field"><label for="demoModel">${esc(t.modelName)}</label>
-            <input class="input" id="demoModel" value="${esc(s.model || kb?.gemini_model || "")}" spellcheck="false"></div>
-          <p style="font-size:12.5px;color:var(--text-3);margin:0 0 12px">${esc(t.keyHint)}</p>
+      return `<div class="setting" style="flex-wrap:wrap">
+        <span class="icon-tile t-orange">${icon("sparkle")}</span>
+        <div class="body"><strong>${esc(t.keyLabel)}</strong><span>${esc(s.key ? t.keyOn : t.keyOff)}</span></div>
+        <button class="btn btn-sm" type="button" id="demoKeyToggle" aria-expanded="false" aria-controls="demoKeyForm">${esc(s.key ? t.change : t.add)}</button>
+        <form id="demoKeyForm" autocomplete="off" hidden style="flex-basis:100%;margin-top:6px">
+          <div class="grid-2">
+            <div class="field"><label for="demoKey">${esc(t.keyLabel)}</label>
+              <input class="input" id="demoKey" type="password" placeholder="${esc(t.keyPlaceholder)}" spellcheck="false"></div>
+            <div class="field"><label for="demoModel">${esc(t.modelName)}</label>
+              <input class="input" id="demoModel" value="${esc(s.model || kb?.gemini_model || "")}" spellcheck="false"></div>
+          </div>
+          <p style="font-size:12.5px;color:var(--text-3);margin:0 0 10px">${esc(t.keyHint)}</p>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn btn-primary" type="submit">${esc(t.save)}</button>
-            ${s.key ? `<button class="btn" type="button" id="demoRemove">${esc(t.remove)}</button>` : ""}
+            <button class="btn btn-primary btn-sm" type="submit">${esc(t.save)}</button>
+            ${s.key ? `<button class="btn btn-sm" type="button" id="demoRemove">${esc(t.remove)}</button>` : ""}
           </div>
         </form>
       </div>`;
     },
-    bindProfile(root, { lang, toast, rerender }) {
+    bindSettings(root, { lang, toast, rerender }) {
       const t = text(lang);
       const form = root.querySelector("#demoKeyForm");
       if (!form) return;
-      const update = () => {
-        const node = root.querySelector("#demoModelStatus");
-        if (node && node.isConnected) node.textContent = modelStatus(lang);
-      };
-      listeners.add(update);
+      root.querySelector("#demoKeyToggle").addEventListener("click", (event) => {
+        form.hidden = !form.hidden;
+        event.currentTarget.setAttribute("aria-expanded", String(!form.hidden));
+        if (!form.hidden) root.querySelector("#demoKey").focus();
+      });
       form.addEventListener("submit", (event) => {
         event.preventDefault();
         const key = root.querySelector("#demoKey").value.trim();
